@@ -1,0 +1,261 @@
+\documentclass[11pt]{article}
+
+\usepackage{sectsty}
+\usepackage{graphicx}
+\usepackage{booktabs}
+%\usepackage[demo]{graphicx}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{bbm}
+\usepackage{dsfont}
+
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\title{}
+\author{}
+\date{\today}
+
+\begin{document}
+%\maketitle	
+%\pagebreak
+
+\makeatletter
+\setlength{\@fptop}{0pt}
+\makeatother
+
+
+
+\section{Experiment 2}
+
+\subsection{General configuration}
+
+\begin{itemize}
+
+\item Initial task: 8 classes
+\item Incremental tasks: 1 class
+\item 3 runs (fixed class order for each run)
+\item 150 epochs for initial task
+\item 100 epochs for incremental task
+\item Adam optimizer
+\item Initial learning rate: 0.001
+
+\end{itemize}
+
+%\subsection{Specific configuration}
+%
+%\begin{itemize}
+%\item Incremental learning rate:
+%\begin{itemize}
+%\item Base: 0.00002
+%\item Fine-tuning: 0.00002
+%\item Feature extraction: 0.001
+%\item LwF: 0.00002
+%\item LwF.MC: 0.00005
+%\item DeepInversion: 0.000015
+%\item ABD: 0.0001
+%\end{itemize}
+%\item Synthetic samples per class: 300 (only for DeepInversion and ABD)
+%\end{itemize}
+
+\subsection{Results}
+
+
+%\begin{table}[ht]
+%\caption{SHREC-2017 results}
+%\begin{tabular}{lccccccc}
+%\toprule
+%            Method &    Task 0 &    Task 1 &    Task 2 &    Task 3 &    Task 4 &    Task 5 &    Task 6 \\
+%\midrule
+%            Oracle &      \multicolumn{6}{c}{89.4} \\
+%\midrule                                                         
+%              Base &      90.7 & 81.5/68.3 & 65.2/92.5 & 44.5/95.2 & 36.8/98.4 & 21.5/100.0 & 14.2/100.0 \\
+%       Fine-tuning &      90.7 & 81.3/64.0 & 68.1/89.1 & 49.1/88.2 & 41.3/93.8 &  27.8/99.0 &  20.8/99.4 \\
+%Feature extraction &      90.7 & 81.7/98.2 & 71.5/91.6 & 63.4/89.7 & 59.7/94.5 &  52.1/83.4 &  45.6/89.4 \\
+%               LwF &      91.3 & 82.4/38.8 & 70.1/85.6 & 43.2/80.8 & 39.9/99.0 &  23.1/95.8 &  14.2/98.9 \\
+%            LwF.MC &      91.3 & 71.9/64.8 & 58.1/61.5 & 40.9/69.8 & 30.7/85.1 &  25.0/80.7 &  20.3/58.1 \\
+%     DeepInversion &      91.5 & 82.2/34.8 & 75.6/71.0 &  66.6/75.1 &  61.7/91.1 &  50.0/86.0 &  42.7/85.3 \\
+%              ABD  &      91.7 & 83.6/37.2 & 74.3/33.6 &  63.5/81.9 & 51.4/85.3  & 39.3/77.0  &  31.5/78.3 \\
+%\midrule 
+%  DeepInversion-BN &      92.2 & 81.4/19.4 & 71.2/66.3 &  55.2/88.8 &  50.8/80.0 &  42.1/95.3 &  39.6/95.0 \\
+%           ABD-BN  &      92.1 & 82.8/30.7 & 75.0/44.6 &  65.8/79.6 & 55.9/93.1  &  46.5/73.0 &  35.7/89.2  \\
+%\midrule 
+%      BAPMI (Ours) &      92.0 & 83.7/91.6 & 76.0/87.9 &  71.4/82.1 &  69.4/90.7 &  64.1/77.5 &  58.1/72.7  \\
+%\bottomrule
+%\end{tabular}
+%\label{tab:shrec_results}
+%\end{table}
+
+
+%\begin{table}[ht]
+%\caption{EgoGesture results}
+%\begin{tabular}{lccccccc}
+%\toprule
+%            Method &    Task 0 &    Task 1 &    Task 2 &    Task 3 &    Task 4 &    Task 5 &    Task 6 \\
+%\midrule
+%            Oracle &      \multicolumn{6}{c}{75.8} \\
+%\midrule  
+%              Base & 77.9   & 55.0/90.3 & 13.5/89.0 &  7.6/96.2 &  6.6/95.8 & 5.8/96.7 & 5.5/96.6 \\
+%       Fine tuning & 77.9   & 52.6/87.6 & 10.8/87.0 &  6.3/96.9 &  6.7/94.7 & 5.6/97.0 & 5.7/95.8 \\
+%Feature extraction & 77.9   & 69.2/92.5 & 62.0/78.8 & 51.5/97.0 & 45.6/96.6 & 41.7/93.5 & 37.3/85.2 \\
+%               LwF & 77.4   & 57.8/86.1 & 31.2/81.8 & 13.5/96.1 & 9.0/95.5 & 6.2/97.4 & 6.1/96.0 \\
+%            LwF.MC & 79.2   & 64.1/81.4 & 54.8/79.1 & 46.3/83.5 & 40.7/80.0 & 35.5/67.9 & 31.7/74.4 \\
+%     DeepInversion &           &           &           &            &            &            &            \\
+%              ABD  &           &           &           &            &            &            &            \\
+%\midrule
+%  DeepInversion-BN &           &           &           &            &            &            &            \\
+%           ABD-BN  &           &           &           &            &            &            &            \\
+%\midrule
+%    BAPMI (Ours)   &  80.0  &  76.8/77.5   & 70.9/73.6 &  65.5/91.0 &   60.1/83.1 & 52.0/88.4  & 44.2/87.2   \\
+%\bottomrule
+%\end{tabular}
+%\label{tab:egogesture_results}
+%\end{table}
+
+
+
+
+
+
+
+%\subsection{Figures}
+%
+%\ref{fig:shrec_1}, \ref{fig:shrec_2}
+%
+%\begin{figure}
+%\begin{subfigure}{0.5\textwidth}
+%  \includegraphics[width=\textwidth]{figures/Base.png}
+%  \caption{Base}
+%  \label{fig:sfig1}
+%\end{subfigure}
+%\begin{subfigure}{0.5\textwidth}
+%  \includegraphics[width=\textwidth]{figures/Fine_tuning.png}
+%  \caption{Fine-tuning}
+%  \label{fig:sfig2}
+%\end{subfigure}
+%\begin{subfigure}{0.5\textwidth}
+%  \includegraphics[width=\textwidth]{figures/Feature_extraction.png}
+%  \caption{Feature extraction}
+%  \label{fig:sfig3}
+%\end{subfigure}
+%\begin{subfigure}{0.5\textwidth}
+%  \includegraphics[width=\textwidth]{figures/LwF.png}
+%  \caption{LwF}
+%  \label{fig:sfig4}
+%\end{subfigure}
+%\begin{subfigure}{0.5\textwidth}
+%  \includegraphics[width=\textwidth]{figures/LwF.MC.png}
+%  \caption{LwF.MC}
+%  \label{fig:sfig5}
+%\end{subfigure}
+%\begin{subfigure}{0.5\textwidth}
+%  \includegraphics[width=\textwidth]{figures/DeepInversion.png}
+%  \caption{DeepInversion}
+%  \label{fig:sfig6}
+%\end{subfigure}
+%\caption{Figures}
+%\label{fig:shrec_1}
+%
+%\end{figure}
+%
+%
+%\begin{figure}[t!]
+%\begin{subfigure}{0.5\textwidth}
+%  \includegraphics[width=\textwidth]{figures/DeepInversion-BN.png}
+%  \caption{DeepInversion-BN}
+%  \label{fig:sfig7}
+%\end{subfigure}
+%\begin{subfigure}{0.5\textwidth}
+%  \includegraphics[width=\textwidth]{figures/abd-BN.png}
+%  \caption{ABD-BN}
+%  \label{fig:sfig8}
+%\end{subfigure}
+%\caption{Figures}
+%\label{fig:shrec_2}
+%
+%\end{figure}
+
+
+\section{Experiment Details}
+
+We followed the original implementations of all DFCIL methods that we used for benchmarking in this work. However, these methods were designed for image classification problem, as we discussed in Sec 4.4 - SOTA Comparison. Therefore, we had to adjust them to our keypoint-based gesture recognition domain and tune their hyperparameters individually for our setup. All hyperparameter values and configuration files will be made available along with the codebase.
+
+\noindent \textbf{Base model training}: We used the original DG-STA [] architecture as our backbone to process the 3D keypoint sequences. We trained the Oracle (upper bound, all classes in one task) and Task 0 models (base classes for each setup) with Adam optimizer (learning rate of 1e-3, $\beta_{1}=0.9$ and $\beta_{2}=0.999$) for 150 epochs. 
+
+\noindent \textbf{Learning rate for incremental tasks}: All methods began from the same Task 0 weights for Task 1. We modified the initial learning rate for the incremental tasks depending on the method, as a stronger regularization requires a higher learning rate to learn new classes. We selected the optimal learning rate value for each method from grid search in the range $\{$1e-5 : 1e-3$\}$.
+
+\noindent \textbf{Synthetic data generation}: Following ABD [], for a fair comparison between the model inversion-based approaches (DeepInversion, ABD and R-DFCIL) we used the same model inversion strategy for the synthetic data generation. However, we optimized the randomly initialized inputs directly instead of training a model to generate the samples. After a grid search we found $\{\alpha_{lr}, \alpha_{con}, \alpha_{stat}, \alpha_{temp}\}$ as $\{$1e-1, 1, 2e2, 1$\}$
+
+\noindent \textbf{R-DFCIL hyperparameters}: R-DFCIL method includes three hyperparameters to weight each of the loss terms, the \textbf{local classification loss} ($\lambda_{lce}$), the \textbf{hard knowledge distillation loss} ($\lambda_{hkd}$) and the \textbf{relational knowledge distillation loss} ($\lambda_{rkd}$). For our experiments, we found $\{\lambda_{lce}, \lambda_{hkd}, \lambda_{rkd}\}$ as $\{$1, 1.5e-1, 7.5e-1$\}$ as the optimal values for SHREC-2017 and $\{$1, 1e-1, 1e-1$\}$ for EgoGesture3D.
+
+
+
+
+
+\section{Additional Experiments}
+
+\textbf{The effect of stat aligment loss during model inversion:} Some SOTA DFCIL methods like DeepInversion [], ABD [] and R-DFCIL [] use the BatchNorm statistics to compute a regularization loss that aligns the synthetic and real data distributions during model inversion. This loss is based on the KL divergence between the synthetic data distribution and the BatchNorm distribution of the previous task model, which reflects the real data statistics from the previous training. However, our backbone architecture, DG-STA [], does not have BatchNorm layers and thus does not use this loss term. To investigate how the \textbf{stat aligment loss} affects model inversion for these baselines, we replaced the LayerNorm layers with BatchNorm layers in DG-STA and ran additional experiments. Tables \ref{tab:shrec-2017_bn} and \ref{tab:ego_gesture_bn} show the results for SHREC-2017 and EgoGesture3D setups, respectively (ref Sec 4.2: Experimental Setup).
+
+
+
+\begin{table*}[h]
+\centering
+\caption{ \textbf{(BN Results)} for class-incremental learning on six task SHREC-2017.}
+\begin{tabular}{lccccccc}
+\toprule
+            Method &    Task 0 &    Task 1 &    Task 2 &    Task 3 &    Task 4 &    Task 5 &    Task 6 \\
+\midrule
+            Oracle &      \multicolumn{6}{c}{90.3} \\
+\midrule            
+        DeepInversion & 90.5 & 79.9/87.1 & 65.9/88.9 & 53.1/97.6 & 49.5/97.8 & 34.2/96.6  & 32.1/95.5 \\
+     DeepInversion-BN & 92.8 & 76.6/94.4 & 49.5/98.6 &  39.7/99.5 &  32.9/99.5 & 20.6/99.5 & 19.4/99.5 \\
+                  ABD & 90.5 & 78.8/85.4 & 64.6/83.3 & 54.3/82.0 & 53.2/88.0 & 46.1/69.1  & 40.4/64.9 \\
+               ABD-BN & 92.8 & 75.5/93.9 & 52.0/84.8 &  41.3/93.8 &  35.6/91.5 & 29.0/95.5 & 24.5/95.7 \\
+               Rdfcil & 90.5 & 78.7/73.6 & 65.5/71.7 & 54.4/82.4 & 49.8/86.5 & 41.5/69.2 & 38.6/77.1 \\
+            Rdfcil-BN & 92.8 & 72.1/82.0 & 57.5/76.1 &  51.7/68.9 &  47.1/57.5 & 42.4/63.8 & 33.8/33.9 \\
+\midrule 
+        BOAT-MI &   92.5 & 86.5/74.5 & 82.2/68.2 & 74.7/72.9 & 72.6/76.4 & 65.5/55.0 & 62.3/60.2 \\
+        BOAT-MI (IFM) &   92.5 & 86.5/7.5 & 82.2/9.3 & 74.7/1.2 & 72.6/2.6 & 65.5/8.7 & 62.3/1.7 \\      
+\bottomrule
+\end{tabular}
+\label{tab:shrec-2017_bn}
+\end{table*}
+
+\begin{table*}[h]
+\centering
+\caption{ \textbf{(BN Results)} for class-incremental learning on six task EgoGesture3D.}
+\begin{tabular}{lccccccc}
+\toprule
+            Method &    Task 0 &    Task 1 &    Task 2 &    Task 3 &    Task 4 &    Task 5 &    Task 6 \\
+\midrule
+            Oracle &      \multicolumn{6}{c}{75.0} \\
+\midrule 
+        DeepInversion & 78.1 & 68.1/90.5 & 44.3/86.3 & 24.7/96.4 & 16.2/96.4 & 11.6/97.9 & 10.0/95.5 \\
+     DeepInversion-BN & 77.4 & 66.4/91.8 & 52.3/86.5 & 35.0/95.9 & 24.5/97.2 & 20.5/96.8 & 15.1/95.8 \\
+                  ABD & 78.1 & 68.8/92.7 & 61.1/86.3 & 54.3/92.8 & 49.0/93.3 & 43.2/95.0 & 39.0/92.3 \\
+               ABD-BN & 77.4 & 61.8/93.9 & 48.3/88.0 & 37.2/96.1 & 32.1/95.2 & 27.8/95.7 & 22.3/93.9 \\
+               Rdfcil & 78.1 & 70.3/66.2 & 61.4/56.6 & 53.2/71.9 & 46.1/66.1 & 39.2/81.5 & 35.2/75.4 \\
+            Rdfcil-BN & 77.4 & 27.4/64.6 & 20.0/77.5 & 17.0/88.3 & 15.8/79.8 & 14.1/87.9 & 13.0/89.9 \\
+\midrule 
+        BOAT-MI &    \\
+        BOAT-MI (IFM) &   \\      
+\bottomrule
+\end{tabular}
+\label{tab:ego_gesture_bn}
+\end{table*}
+
+
+
+
+
+
+
+
+\end{document}

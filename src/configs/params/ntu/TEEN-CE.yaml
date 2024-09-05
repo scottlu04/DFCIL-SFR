@@ -1,0 +1,133 @@
+few_shot_size: 5
+few_shot_feat_aug: False
+n_views: &n_views 2
+in_channels: &in_channels 3
+seq_len: &seq_len 8
+rm_global_scale: &rm_global_scale On
+batch_size: 32
+workers: 4
+total_epochs: 50
+total_epochs_incremental_task: 0
+step_per_epoch: &step_per_epoch On
+step_per_batch: &step_per_batch Off
+log_freq:
+    train: 20
+    val: null
+
+model:
+    name: 'stgcn_backbone'
+    n_joints: 25
+    graph_cfg: 
+        layout: 'nturgb+d'
+        mode: 'spatial'
+    gcn_adaptive: 'init' 
+    gcn_with_res: True
+    tcn_type: 'mstcn'
+    dropout: 0.5
+    in_channels: 3
+    base_channels: 64
+    d_feat: 256
+
+
+transforms:
+    # window_size: *seq_len
+    # p_interval: [0.5, 1]
+    train:
+
+        PreNormalize3D:
+            zaxis: [0, 1] 
+            xaxis: [8, 4]
+            align_spine: True
+            align_center: True
+
+        GenSkeFeat:
+            dataset: 'nturgb+d'
+            feats: ['j']
+            axis: -1
+
+        UniformSampleFrames:
+            clip_len: 100
+            num_clips: 1
+            p_interval: 1
+            seed: 255
+        PoseDecode:
+        FormatGCNInput:
+            num_person: 2
+            mode: 'zero'
+            
+
+               
+    val: &transforms_inference
+        PreNormalize3D:
+            zaxis: [0, 1] 
+            xaxis: [8, 4]
+            align_spine: True
+            align_center: True
+
+        GenSkeFeat:
+            dataset: 'nturgb+d'
+            feats: ['j']
+            axis: -1
+
+        UniformSampleFrames:
+            clip_len: 100
+            num_clips: 1
+            p_interval: 1
+            seed: 255
+        PoseDecode:
+        FormatGCNInput:
+            num_person: 2
+            mode: 'zero'
+            
+    testval: *transforms_inference  
+    testtrain: *transforms_inference 
+    test: *transforms_inference  
+
+loss:
+    # contrastive: 
+    #     weight: 1
+    #     n_views: *n_views
+    #     is_supervised: On
+    #     temperature: 0.07
+
+    cross_entropy: 
+        weight: 1
+        ignore: null
+        class_weight: null
+
+    mse:
+        weight: 0
+        # temperature: 2.0
+        # soft_t: False
+
+
+optimizer:
+    name: 'adam'
+    lr: &lr 0.001
+    lr_incremental_task:  0.00005 #0.001 #0.00005
+    classifier_lr: 0.01
+    betas: [0.9, 0.999]
+    include_scheduler: False
+    scheduler:
+        name: 'linear'
+        lr: *lr
+        start_factor: 1
+        end_factor: 0.001
+        step_per_batch: *step_per_batch
+        step_per_epoch: *step_per_epoch      
+          
+
+increm:
+    load_pretrained_task0: True
+    first_split_size: 36
+    other_split_size: 4
+    max_task: 7
+    load_best_checkpoint_train: False  # Only for task_id == 1
+    load_best_checkpoint_test: False # Only for task_id == 1
+    freeze_feature_extractor: False
+    freeze_classifier: False
+    memory: 0
+    learner:
+        type: 'teen_ce'
+        softmax_t: 16
+        shift_weight: 0.1
